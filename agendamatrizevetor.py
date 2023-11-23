@@ -1,4 +1,4 @@
-from funcoes import incluir,pesquisar
+from funcoes import incluir,pesquisar,listar
 
 def menu():
 
@@ -36,23 +36,15 @@ while True:
                print("contato nâo encontrado")           
           
      elif opcao ==3:
-          
-          for elemento in agenda:
-               
-               print(f"""{elemento["nome"]}\t {elemento["email"]}\t{elemento["telefone"]}""")
+     
+           listar( agenda)
 
      elif opcao ==4:
 
           nomebusca=input ("infomer o nome da busca")  
 
-          posicao=-1
+          posicao= pesquisar(agenda,nomebusca)
           
-          for elemento in agenda :
-
-               posicao= posicao+1
-
-               if elemento ["nome"].lower == nomebusca.lower():
-                 break     
           
           if posicao !=-1:
                
@@ -61,13 +53,15 @@ while True:
                agenda[posicao]["email"]= input("infome o email:")
 
                agenda[posicao]["telefone"]=input("infome o telefone")
-
+                
+          else:
+               print("contato nâo encontrado") 
 
      elif opcao ==5:
           
           nomebusca=input ("infomer o nome da busca")  
 
-          posicao=-1
+          posicao=pesquisar(agenda,nomebusca)
           
           for elemento in agenda :
 
@@ -76,8 +70,10 @@ while True:
                if elemento ["nome"].lower == nomebusca.lower():
                  break    
                 
-     if posicao!=-1:
+          if posicao!=-1:
                agenda.pop(posicao)
+          else:
+               print("contato nâo encontrado") 
 
      elif opcao ==9:
           break
